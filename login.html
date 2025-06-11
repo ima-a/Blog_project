@@ -174,7 +174,12 @@
         <h1>Blogverse</h1>
         <h2>Login Page</h2>
     </header>
-    
+    <nav>
+        <ul>
+           
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
     <main>
         <section class="card">
             <h3>Login</h3>
@@ -187,7 +192,7 @@
                 <button type="submit">Login</button>
             </form>
             <div id="successMessage" class="success-message">Congratulations, you logged in!</div>
-            <p>Don't have an account? <a href="#register" onclick="showRegisterForm()">Register here</a></p>
+            <p>Don't have an account? <a href="registration.html">Register here</a></p>
             <form id="registerForm" style="display: none;">
                 <h3>Register</h3>
                 <label for="regUsername">Username</label>
@@ -204,47 +209,59 @@
         <p>Group Number: <strong>11</strong></p>
     </footer>
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-            });
+    // Smooth scroll links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
         });
-        function showRegisterForm() {
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('registerForm').style.display = 'block';
+    });
+
+    function showRegisterForm() {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('registerForm').style.display = 'block';
+    }
+
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const successMessage = document.getElementById('successMessage');
+
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const enteredUsername = document.getElementById('username').value.trim();
+        const enteredPassword = document.getElementById('password').value;
+
+        const storedUsername = localStorage.getItem('username');
+        const storedPassword = localStorage.getItem('password');
+
+        if (enteredUsername === storedUsername && enteredPassword === storedPassword) {
+            successMessage.style.display = 'block';
+            loginForm.reset();
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+                window.location.href = 'home.html'; // redirect to homepage
+            }, 2000);
+        } else {
+            alert('Incorrect username or password!');
         }
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const successMessage = document.getElementById('successMessage');
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            if (username && password.length >= 6) {
-                successMessage.style.display = 'block';
-                loginForm.reset();
-                setTimeout(() => {
-                    successMessage.style.display = 'none';
-                    window.location.href = 'home.html';
-                }, 2000);
-            } else {
-                alert('Please enter a valid username and a password with at least 6 characters.');
-            }
-        });
-        registerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('regUsername').value;
-            const password = document.getElementById('regPassword').value;
-            if (username && password.length >= 6) {
-                alert('Registration successful! Please log in.');
-                document.getElementById('loginForm').style.display = 'block';
-                document.getElementById('registerForm').style.display = 'none';
-                registerForm.reset();
-            } else {
-                alert('Please enter a valid username and a password with at least 6 characters.');
-            }
-        });
-    </script>
+    });
+
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('regUsername').value.trim();
+        const password = document.getElementById('regPassword').value;
+
+        if (username && password.length >= 6) {
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+            alert('Registration successful! Please log in.');
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            registerForm.reset();
+        } else {
+            alert('Please enter a valid username and a password with at least 6 characters.');
+        }
+    });
+</script>
 </body>
 </html>
