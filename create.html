@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogverse - Create Blog</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #121212;
+            color: #fff;
+            font-family: 'Open Sans', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Lora', serif;
+        }
+        .layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 220px;
+            background-color: #1c1c1c;
+            color: white;
+            padding-top: 20px;
+            flex-shrink: 0;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #333;
+        }
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+        }
+        .card {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin: auto;
+        }
+        h3 {
+            font-size: 2em;
+            color: #ff7e67;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        input, select, textarea, button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+        input, select, textarea {
+            background: #2a2a2a;
+            color: white;
+            margin-bottom: 10px;
+        }
+        button {
+            background: #b02a37;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #8f1e2b;
+        }
+        #preview {
+            margin-top: 30px;
+            padding: 20px;
+            background: #2a2a2a;
+            border-radius: 5px;
+        }
+        .success-message {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1a1a1a;
+        }
+        footer p, footer a {
+            color: #bbb;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .layout {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                display: flex;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .sidebar a {
+                flex: 1;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <div class="sidebar">
+            <h2>Blogverse</h2>
+            <a href="home.html">🏠 Home</a>
+            <a href="categories.html">📂 Categories</a>
+            <a href="trending.html">🔥 Trending</a>
+            <a href="profile.html">👤 Profile</a>
+            <a href="create.html">✍️ Create Blog</a>
+            <a href="subscribe.html">🔔 Subscribe</a>
+            <a href="login.html">🚪 Sign Out</a>
+        </div>
+        <div class="main-content">
+            <section class="card">
+                <h3>Create New Blog</h3>
+                <form id="blogForm">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Tech">Tech</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Food">Food</option>
+                        <option value="Fitness">Fitness</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Music">Music</option>
+                        <option value="Books">Books</option>
+                        <option value="Education">Education</option>
+                        <option value="Lifestyle">Lifestyle</option>
+                    </select>
+
+                    <label for="content">Content</label>
+                    <textarea id="content" name="content" rows="6" required></textarea>
+
+                    <label for="image">Attach Image</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+
+                    <button type="submit">Publish</button>
+                </form>
+                <div id="successMessage" class="success-message">Congratulations, you posted your blog!</div>
+                <div id="preview">
+                    <h4>Blog Preview</h4>
+                    <p id="previewTitle"></p>
+                    <p id="previewCategory"></p>
+                    <p id="previewContent"></p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <footer>
+        <p>Made by <strong>Prajwal G N</strong></p>
+        <p>GitHub: <a href="https://github.com/Prajwal5755" target="_blank">@Prajwal5755</a></p>
+        <p>Group Number: <strong>11</strong></p>
+        <p>© Blogverse 2025</p>
+    </footer>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        const form = document.getElementById('blogForm');
+        const titleInput = document.getElementById('title');
+        const categoryInput = document.getElementById('category');
+        const contentInput = document.getElementById('content');
+        const imageInput = document.getElementById('image');
+        const previewTitle = document.getElementById('previewTitle');
+        const previewCategory = document.getElementById('previewCategory');
+        const previewContent = document.getElementById('previewContent');
+        const previewImage = document.getElementById('previewImage');
+        const successMessage = document.getElementById('successMessage');
+
+        // Live preview
+        form.addEventListener('input', () => {
+            previewTitle.textContent = titleInput.value || 'Your Blog Title';
+            previewCategory.textContent = `Category: ${categoryInput.value || 'Select a Category'}`;
+            previewContent.textContent = contentInput.value || 'Your blog content will appear here.';
+        });
+
+        // Image preview
+        imageInput.addEventListener('change', () => {
+            const file = imageInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                previewImage.style.display = 'none';
+            }
+        });
+
+        // Form submission
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (titleInput.value && categoryInput.value && contentInput.value) {
+                // Create blog object
+                const blog = {
+                    title: titleInput.value,
+                    category: categoryInput.value,
+                    content: contentInput.value,
+                    date: new Date().toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    }),
+                    image: imageInput.files[0] ? URL.createObjectURL(imageInput.files[0]) : null
+                };
+
+                // Get existing blogs from localStorage
+                const blogs = JSON.parse(localStorage.getItem('userBlogs')) || [];
+
+                // Add new blog
+                blogs.push(blog);
+
+                // Save to localStorage
+                localStorage.setItem('userBlogs', JSON.stringify(blogs));
+
+                // Show success message
+                successMessage.style.display = 'block';
+                form.reset();
+                previewTitle.textContent = '';
+                previewCategory.textContent = '';
+                previewContent.textContent = '';
+                previewImage.style.display = 'none';
+
+                // Redirect to profile after 2 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                    window.location.href = 'profile.html';
+                }, 2000);
+            } else {
+                alert('Please fill out all required fields.');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blogverse - Tech</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0f2027;
+      --secondary: #203a43;
+      --accent: #2c5364;
+      --text: #f5f5f5;
+      --bg: #1c1c1c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Lora', serif;
+    }
+
+    header {
+      background: linear-gradient(to right, var(--primary), var(--secondary), var(--accent));
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      background-color: #121212;
+      display: flex;
+      justify-content: center;
+      padding: 0.75rem 0;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00d9ff;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    h3 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #00d9ff;
+    }
+
+    .blog-post {
+      background-color: #2a2a2a;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      margin-bottom: 2rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .blog-post:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .blog-post-header {
+      background-color: var(--accent);
+      color: white;
+      padding: 1rem;
+    }
+
+    .blog-post-content {
+      padding: 1rem 1.5rem;
+    }
+
+    .meta {
+      font-size: 0.85rem;
+      color: #ccc;
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      background-color: #121212;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+    }
+
+    footer a {
+      color: #00d9ff;
+      text-decoration: none;
+    }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #00d9ff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Blogverse</h1>
+    <h2>Category: Tech</h2>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#post1">AI Future</a></li>
+      <li><a href="#post2">Remote Gadgets</a></li>
+      <li><a href="#post3">Cybersecurity</a></li>
+      <li><a href="#post4">Quantum Computing</a></li>
+      <li><a href="#post5">Smart Devices</a></li>
+      <li><a href="categories.html">All Categories</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h3>Tech Blogs</h3>
+
+    <article id="post1" class="blog-post">
+      <div class="blog-post-header">
+        <h4>The Future of AI: What to Expect in 2025</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Daniel Kim | May 25, 2025</p>
+        <p>Artificial intelligence is evolving rapidly. Explore predictions for AI advancements in 2025 and their impact on daily life.</p>
+      </div>
+    </article>
+
+    <article id="post2" class="blog-post">
+      <div class="blog-post-header">
+        <h4>Best Gadgets for Remote Work Productivity</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Sarah Lee | May 20, 2025</p>
+        <p>Discover the top tech gadgets to enhance your remote work setup, from monitors to ergonomic accessories.</p>
+      </div>
+    </article>
+
+    <article id="post3" class="blog-post">
+      <div class="blog-post-header">
+        <h4>Cybersecurity Tips for 2025</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Michael Brown | May 15, 2025</p>
+        <p>Stay safe online with these essential cybersecurity practices for protecting your data in 2025.</p>
+      </div>
+    </article>
+
+    <article id="post4" class="blog-post">
+      <div class="blog-post-header">
+        <h4>Quantum Computing: The Next Frontier</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Anna Smith | May 10, 2025</p>
+        <p>Learn how quantum computing is set to revolutionize technology, from cryptography to drug discovery.</p>
+      </div>
+    </article>
+
+    <article id="post5" class="blog-post">
+      <div class="blog-post-header">
+        <h4>Smart Home Devices for 2025</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By James Carter | May 5, 2025</p>
+        <p>Upgrade your home with the latest smart devices, from voice assistants to energy-saving tech.</p>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <p>Created by <strong>Sanjay Viswakarma HS</strong></p>
+    <p>GitHub: <a href="https://github.com/ima-a" target="_blank">@ima-a</a></p>
+    <p>Group Number: <strong>11</strong></p>
+  </footer>
+
+  <button class="scroll-top" onclick="scrollToTop()">&#8679;</button>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    const scrollBtn = document.querySelector('.scroll-top');
+    window.addEventListener('scroll', () => {
+      scrollBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

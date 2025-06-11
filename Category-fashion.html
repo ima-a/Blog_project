@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blogverse - Fashion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #a18cd1;
+      --secondary: #fbc2eb;
+      --accent: #ffd6e0;
+      --text: #333;
+      --bg: #fdfdfd;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+    header {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav {
+      background-color: #4b4b4b;
+      display: flex;
+      justify-content: center;
+      padding: 0.75rem 0;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h3 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    .blog-post {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .blog-post:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    .blog-post-header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem;
+    }
+    .blog-post-content {
+      padding: 1rem 1.5rem;
+    }
+    .meta {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 0.5rem;
+    }
+    footer {
+      background-color: #2d2d2d;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Blogverse</h1>
+    <h2>Category: Fashion</h2>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#post1">Trendy Outfits</a></li>
+      <li><a href="#post2">Sustainable Fashion</a></li>
+      <li><a href="#post3">Vintage Styling</a></li>
+      <li><a href="#post4">Runway Highlights</a></li>
+      <li><a href="#post5">Accessories Guide</a></li>
+      <li><a href="categories.html">All Categories</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h3>Fashion Blogs</h3>
+
+    <article id="post1" class="blog-post">
+      <div class="blog-post-header">
+        <h4>2025 Fashion Trends: Trendy Outfits to Watch</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Jane Doe | May 25, 2025</p>
+        <p>Explore the hottest fashion trends for 2025, from bold colors to minimalist designs. Expect vibrant patterns and eco-friendly fabrics, with a focus on versatility and comfort.</p>
+      </div>
+    </article>
+
+    <article id="post2" class="blog-post">
+      <div class="blog-post-header">
+        <h4>Sustainable Fashion: Dressing with a Conscience</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Alice Smith | May 20, 2025</p>
+        <p>Sustainable fashion is reshaping the industry. Brands are using biodegradable materials, ethical labor practices, and transparent supply chains to reduce environmental impact.</p>
+      </div>
+    </article>
+
+    <article id="post3" class="blog-post">
+      <div class="blog-post-header">
+        <h4>How to Style Vintage Pieces for Modern Looks</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Emma Brown | May 15, 2025</p>
+        <p>Vintage clothing is back in style! Mix retro pieces with contemporary accessories to create unique, timeless outfits that stand out in any crowd.</p>
+      </div>
+    </article>
+
+    <article id="post4" class="blog-post">
+      <div class="blog-post-header">
+        <h4>Runway Highlights from 2025 Fashion Week</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Sarah Johnson | May 10, 2025</p>
+        <p>A recap of the most iconic looks from global fashion weeks, featuring top designers and bold, futuristic styles setting the tone for this year.</p>
+      </div>
+    </article>
+
+    <article id="post5" class="blog-post">
+      <div class="blog-post-header">
+        <h4>The Ultimate Guide to Fashion Accessories</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Lily Davis | May 5, 2025</p>
+        <p>Learn how to choose perfect accessories—from statement earrings to timeless bags—to elevate any look and showcase your personal style.</p>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <p>Created by <strong>Sanjay Viswakarma HS</strong></p>
+    <p>GitHub: <a href="https://github.com/ima-a" target="_blank">@ima-a</a></p>
+    <p>Group Number: <strong>11</strong></p>
+  </footer>
+
+  <button class="scroll-top" onclick="scrollToTop()">&#8679;</button>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    const scrollBtn = document.querySelector('.scroll-top');
+    window.addEventListener('scroll', () => {
+      scrollBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

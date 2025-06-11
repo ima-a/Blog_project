@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogverse - Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+        }
+        .layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 220px;
+            background-color: #1c1c1c;
+            color: white;
+            padding-top: 20px;
+            flex-shrink: 0;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #333;
+        }
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #b02a37;
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .card {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h3 {
+            margin-bottom: 10px;
+            color: #ff7e67;
+        }
+        .card p, .card h4, .card h5 {
+            color: #ccc;
+        }
+        .blog-post {
+            padding: 15px;
+            border-bottom: 1px solid #444;
+            margin-bottom: 10px;
+        }
+        .blog-post:last-child {
+            border-bottom: none;
+        }
+        .blog-post p.content {
+            color: #ddd;
+            line-height: 1.5;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1a1a1a;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
+        footer p, footer a {
+            color: #bbb;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 768px) {
+            .layout {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                display: flex;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .sidebar a {
+                flex: 1;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Blogverse - Profile Page</div>
+    <div class="layout">
+        <div class="sidebar">
+            <h2>Blogverse</h2>
+            <a href="home.html">🏠 Home</a>
+            <a href="categories.html">📂 Categories</a>
+            <a href="trending.html">🔥 Trending</a>
+            <a href="profile.html">👤 Profile</a>
+            <a href="create.html">✍️ Create Blog</a>
+            <a href="subscribe.html">🔔 Subscribe</a>
+            <a href="login.html">🚪 Sign Out</a>
+        </div>
+        <div class="main-content">
+            <div class="card">
+                <h3>Your Profile</h3>
+                <p>Manage your blogs and privacy settings.</p>
+                <h4>Posted Blogs:</h4>
+                <div id="postedBlogs">
+                    <!-- Blogs will be dynamically loaded here -->
+                </div>
+                <a href="home.html">Go to Home</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Created by <strong>Sanjay Viswakarma HS</strong></p>
+        <p>GitHub: <a href="https://github.com/ima-a" target="_blank">@ima-a</a></p>
+        <p>Group Number: <strong>11</strong></p>
+    </footer>
+    <button class="scroll-top" onclick="scrollToTop()">⇧</button>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        function loadBlogs() {
+            const blogContainer = document.getElementById('postedBlogs');
+            blogContainer.innerHTML = '';
+            const blogs = JSON.parse(localStorage.getItem('userBlogs')) || [];
+
+            if (blogs.length === 0) {
+                blogContainer.innerHTML = '<p>No blogs posted yet.</p>';
+                return;
+            }
+
+            blogs.forEach((blog, index) => {
+                const blogDiv = document.createElement('div');
+                blogDiv.className = 'blog-post';
+                blogDiv.innerHTML = `
+                    <h5>${blog.title}</h5>
+                    <p>Category: ${blog.category} | Posted on: ${blog.date}</p>
+                    <p class="content">${blog.content}</p>
+                    ${blog.image ? `<img src="${blog.image}" style="max-width: 100px; border-radius: 5px;" alt="Blog Image">` : ''}
+                    <button class="delete-btn" onclick="deleteBlog(${index})">Delete</button>
+                `;
+                blogContainer.appendChild(blogDiv);
+            });
+        }
+
+        function deleteBlog(index) {
+            if (confirm('Are you sure you want to delete this blog?')) {
+                const blogs = JSON.parse(localStorage.getItem('userBlogs')) || [];
+                blogs.splice(index, 1);
+                localStorage.setItem('userBlogs', JSON.stringify(blogs));
+                loadBlogs();
+            }
+        }
+
+        const scrollBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            scrollBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.onload = loadBlogs;
+    </script>
+</body>
+</html>

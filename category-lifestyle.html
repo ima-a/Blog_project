@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogverse - Lifestyle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: #f8f9fa;
+            scroll-behavior: smooth;
+        }
+        header {
+            background-color: #1a2b49;
+            color: #fff;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            font-weight: normal;
+        }
+        header h2 {
+            margin: 5px 0;
+            font-size: 1.7em;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+        nav {
+            background-color: #1a2b49;
+            padding: 12px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 14px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        nav ul li a:hover {
+            background-color: #f4b400;
+            color: #1a2b49;
+            text-decoration: none;
+        }
+        main {
+            max-width: 850px;
+            margin: 25px auto;
+            padding: 0 20px;
+        }
+        .blog-post {
+            background-color: #fff;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+        .blog-post:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+            background-color: #f1f1f1;
+        }
+        .blog-post img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            margin-bottom: 12px;
+        }
+        .blog-post h4 {
+            margin: 0 0 12px;
+            font-size: 1.8em;
+            color: #1a2b49;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+        .blog-post h4:hover {
+            color: #f4b400;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .blog-post .meta {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+        .blog-post p {
+            line-height: 1.7;
+            color: #4a3c31;
+        }
+        footer {
+            background-color: #1a2b49;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer a {
+            color: #f4b400;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .search-container input {
+            padding: 10px;
+            width: 250px;
+            border: 1px solid #1a2b49;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff;
+            color: #4a3c31;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .search-container input:focus {
+            border-color: #f4b400;
+        }
+        .search-container input::placeholder {
+            color: #666;
+            opacity: 0.8;
+        }
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1a2b49;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: none;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+        .scroll-top:hover {
+            background-color: #f4b400;
+        }
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            .blog-post {
+                padding: 15px;
+            }
+            .blog-post img {
+                height: 120px;
+            }
+            header h1 {
+                font-size: 2.2em;
+            }
+            header h2 {
+                font-size: 1.3em;
+            }
+            main {
+                margin: 15px auto;
+            }
+            .search-container input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blogverse</h1>
+        <h2>Category Lifestyle Page</h2>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#post1">Minimalist Living</a></li>
+            <li><a href="#post2">Work-Life Balance</a></li>
+            <li><a href="#post3">Home Decor</a></li>
+            <li><a href="#post4">Mindfulness</a></li>
+            <li><a href="#post5">Sustainable Living</a></li>
+            <li><a href="categories.html">All Categories</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>Lifestyle Blogs</h2>
+            <p>Welcome to the lifestyle category.</p>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search Lifestyle Blogs...">
+            </div>
+            <div id="blogList">
+                <div id="post1" class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1501877008226-4fca48ee50c1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Minimalist Living">
+                    <h4>Minimalist Living: Decluttering for 2025</h4>
+                    <p class="meta">By Grace Lee | May 25, 2025</p>
+                    <p>Embrace minimalism with practical tips for decluttering your home and simplifying your life.</p>
+                </div>
+                <div id="post2" class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1509822929063-6b6cfc9b42f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Work-Life Balance">
+                    <h4>Balancing Work and Life in the Digital Age</h4>
+                    <p class="meta">By Oliver Smith | May 20, 2025</p>
+                    <p>Learn strategies to maintain a healthy work-life balance in today’s always-connected world.</p>
+                </div>
+                <div id="post3" class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Home Decor">
+                    <h4>Budget-Friendly Home Decor Ideas</h4>
+                    <p class="meta">By Lily Chen | May 15, 2025</p>
+                    <p>Transform your space with these affordable and stylish home decor tips for 2025.</p>
+                </div>
+                <div id="post4" class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1658752777631-6458598712ef?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mindfulness">
+                    <h4>Practicing Mindfulness in Everyday Life</h4>
+                    <p class="meta">By Emma Davis | May 10, 2025</p>
+                    <p>Incorporate mindfulness into your routine with simple practices for a calmer, happier life.</p>
+                </div>
+                <div id="post5" class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1514053026555-49ce8886ae41?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sustainable Living">
+                    <h4>Sustainable Living: Small Changes, Big Impact</h4>
+                    <p class="meta">By Noah Carter | May 5, 2025</p>
+                    <p>Discover easy ways to live more sustainably, from reducing waste to eco-friendly habits.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <button class="scroll-top" aria-label="Scroll to top">↑</button>
+    <footer>
+        <p>Made by: <strong>Prakhar Goyal</strong></p>
+        <p>GitHub: <a href="https://github.com/Prakhar11332" target="_blank">@Prakhar11332</a></p>
+        <p>Group Number: <strong>11</strong></p>
+        <p>© Blogverse 2025</p>
+    </footer>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const blogList = document.getElementById('blogList');
+        const blogPosts = blogList.getElementsByClassName('blog-post');
+
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            Array.from(blogPosts).forEach(post => {
+                const title = post.querySelector('h4').textContent.toLowerCase();
+                const content = post.querySelector('p:nth-child(4)').textContent.toLowerCase();
+                if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        });
+
+        // Scroll-to-top functionality
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.style.display = 'block';
+                scrollTopBtn.style.opacity = '1';
+            } else {
+                scrollTopBtn.style.opacity = '0';
+                setTimeout(() => {
+                    scrollTopBtn.style.display = 'none';
+                }, 300);
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

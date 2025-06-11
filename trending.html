@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogverse - Trending</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000000;
+            color: #333;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .sidebar {
+            background-color: #1a2b49;
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #fff;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            padding: 12px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+        }
+
+        .nav-links a:hover {
+            background-color: #f4b400;
+            transform: translateX(5px);
+        }
+
+        .nav-links a.active {
+            background-color: #f4b400;
+            font-weight: 600;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #1a2b49;
+            font-size: 1.5em;
+            cursor: pointer;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1001;
+        }
+
+        header {
+            background: #621616;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-left: 250px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header h2 {
+            margin: 5px 0;
+            font-size: 1.5em;
+            font-weight: normal;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            margin-left: 270px;
+            margin-right: 20px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .blog-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: calc(33.33% - 20px);
+            padding: 15px;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background-color: #f1f1f1;
+        }
+
+        .blog-card h4 {
+            margin: 0 0 10px;
+            font-size: 1.8em;
+            color: #1a2b49;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .blog-card h4:hover {
+            color: #f4b400;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .blog-card .meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .blog-card p {
+            line-height: 1.6;
+            color: #161414;
+            font-size: 1em;
+            margin: 0;
+        }
+
+        .blog-card a {
+            color: #1a2b49;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .blog-card a:hover {
+            color: #f4b400;
+        }
+
+        .featured {
+            width: 100%;
+            background: #fff;
+        }
+
+        .featured:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background-color: #f1f1f1;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1a2b49;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: none;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-top:hover {
+            background-color: #f4b400;
+        }
+
+        footer {
+            background-color: #1a2b49;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-left: 250px;
+        }
+
+        footer a {
+            color: #f4b400;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            header {
+                margin-left: 0;
+            }
+
+            main {
+                margin-left: 0;
+                padding: 0 10px;
+            }
+
+            .blog-card {
+                width: calc(50% - 20px);
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            header h2 {
+                font-size: 1.2em;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <nav class="sidebar">
+        <div class="logo">Blogverse</div>
+        <div class="nav-links">
+            <a href="home.html" aria-label="Home">🏠 Home</a>
+            <a href="categories.html" aria-label="Categories">📂 Categories</a>
+            <a href="trending.html" class="active" aria-label="Trending">🔥 Trending</a>
+            <a href="profile.html" aria-label="Profile">👤 Profile</a>
+            <a href="create.html" aria-label="Create Blog">✍️ Create Blog</a>
+            <a href="subscribe.html" aria-label="Subscribe">🔔 Subscribe</a>
+            <a href="login.html" aria-label="Sign Out">🚪 Sign Out</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Blogverse</h1>
+        <h2>Trending Page</h2>
+    </header>
+
+    <main>
+        <div class="main-content">
+            <div class="blog-card featured">
+                <h4>Fashion: How to Style Oversized Jackets</h4>
+                <p class="meta">By Author | June 10, 2025</p>
+                <p>Learn the latest trends in fashion with tips on styling oversized jackets for a chic look.</p>
+                <a href="category-fashion.html">Read more</a>
+            </div>
+            <div class="blog-card">
+                <h4>Tech: Top 5 AI Tools of 2025</h4>
+                <p class="meta">By Author | June 5, 2025</p>
+                <p>Discover the most innovative AI tools that are shaping the tech landscape this year.</p>
+                <a href="category-tech.html">Read more</a>
+            </div>
+            <div class="blog-card">
+                <h4>Travel: Hidden Gems in South America</h4>
+                <p class="meta">By Author | May 30, 2025</p>
+                <p>Explore lesser-known destinations in South America for your next adventure.</p>
+                <a href="category-travel.html">Read more</a>
+            </div>
+            <div class="blog-card">
+                <h4>Fitness: 20-Minute Daily Home Workouts</h4>
+                <p class="meta">By Author | May 25, 2025</p>
+                <p>Stay fit with these quick and effective 20-minute workouts you can do at home.</p>
+                <a href="category-fitness.html">Read more</a>
+            </div>
+        </div>
+    </main>
+
+    <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+    <footer>
+        <p>Made by: <strong>Prakhar Goyal</strong></p>
+        <p>GitHub: <a href="https://github.com/Prakhar11332" target="_blank">@Prakhar11332</a></p>
+        <p>Made by: <strong>Ridhwajit Bose</strong></p>
+        <p>GitHub: <a href="https://github.com/RidhwajitBose69" target="_blank">@RidhwajitBose69</a></p>
+        <p>Made by: <strong>Sanjay Viswakarma HS</strong></p>
+        <p>GitHub: <a href="https://github.com/ima-a" target="_blank">@ima-a</a></p>
+        <p>Made by: <strong>Prajwal G N</strong></p>
+        <p>GitHub: <a href="https://github.com/Prajwal5755" target="_blank">@Prajwal5755</a></p>
+        <p>Group Number: <strong>11</strong></p>
+        <p>© Blogverse 2025</p>
+    </footer>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        navToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        const sidebarLinks = document.querySelectorAll('.nav-links a');
+        sidebarLinks.forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.style.display = 'block';
+                scrollTopBtn.style.opacity = '1';
+            } else {
+                scrollTopBtn.style.opacity = '0';
+                setTimeout(() => {
+                    scrollTopBtn.style.display = 'none';
+                }, 300);
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

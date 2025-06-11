@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blogverse - Fitness</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #43cea2;
+      --secondary: #185a9d;
+      --accent: #a8edea;
+      --text: #333;
+      --bg: #fdfdfd;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+    header {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav {
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      padding: 0.75rem 0;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h3 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    .blog-post {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .blog-post:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    .blog-post-header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem;
+    }
+    .blog-post-content {
+      padding: 1rem 1.5rem;
+    }
+    .meta {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 0.5rem;
+    }
+    footer {
+      background-color: #2d2d2d;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Blogverse</h1>
+    <h2>Category: Fitness</h2>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#post1">HIIT Workouts</a></li>
+      <li><a href="#post2">Mindful Fitness</a></li>
+      <li><a href="#post3">Home Workouts</a></li>
+      <li><a href="#post4">Nutrition Tips</a></li>
+      <li><a href="#post5">Fitness Tech</a></li>
+      <li><a href="categories.html">All Categories</a></li>
+    </ul>
+  </nav>
+
+  <main>
+     <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search blog titles..." onkeyup="filterPosts()" />
+    </div>
+    
+    <h3>Fitness Blogs</h3>
+
+    <article id="post1" class="blog-post">
+      <div class="blog-post-header">
+        <h4>High-Intensity Interval Training: 2025 Workouts</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Ava Johnson | May 25, 2025</p>
+        <p>HIIT workouts are perfect for busy schedules. Learn the best routines to maximize fitness in minimal time.</p>
+      </div>
+    </article>
+
+    <article id="post2" class="blog-post">
+      <div class="blog-post-header">
+        <h4>Mindful Fitness: Combining Yoga and Meditation</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Lucas Brown | May 20, 2025</p>
+        <p>Combine yoga and meditation for a holistic fitness approach that benefits both body and mind.</p>
+      </div>
+    </article>
+
+    <article id="post3" class="blog-post">
+      <div class="blog-post-header">
+        <h4>Effective Home Workouts Without Equipment</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Zoe Carter | May 15, 2025</p>
+        <p>No gym? No problem! Discover bodyweight exercises for a full workout at home.</p>
+      </div>
+    </article>
+
+    <article id="post4" class="blog-post">
+      <div class="blog-post-header">
+        <h4>Nutrition Tips for Fitness Goals</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Ella Kim | May 10, 2025</p>
+        <p>Fuel your workouts with these nutrition tips to support muscle growth and recovery.</p>
+      </div>
+    </article>
+
+    <article id="post5" class="blog-post">
+      <div class="blog-post-header">
+        <h4>Fitness Tech to Track Your Progress</h4>
+      </div>
+      <div class="blog-post-content">
+        <p class="meta">By Jack Lee | May 5, 2025</p>
+        <p>From smartwatches to apps, explore the best fitness tech to monitor and improve your performance.</p>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <p>Created by <strong>Sanjay Viswakarma HS</strong></p>
+    <p>GitHub: <a href="https://github.com/ima-a" target="_blank">@ima-a</a></p>
+    <p>Group Number: <strong>11</strong></p>
+  </footer>
+
+  <button class="scroll-top" onclick="scrollToTop()">&#8679;</button>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    const scrollBtn = document.querySelector('.scroll-top');
+    window.addEventListener('scroll', () => {
+      scrollBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
