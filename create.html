@@ -188,6 +188,8 @@
                     <p id="previewTitle"></p>
                     <p id="previewCategory"></p>
                     <p id="previewContent"></p>
+
+                    <img id="previewImage" style="display:none; max-width:100%; margin-top:10px;" />
                 </div>
             </section>
         </div>
@@ -244,7 +246,6 @@
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             if (titleInput.value && categoryInput.value && contentInput.value) {
-                // Create blog object
                 const blog = {
                     title: titleInput.value,
                     category: categoryInput.value,
@@ -257,16 +258,10 @@
                     image: imageInput.files[0] ? URL.createObjectURL(imageInput.files[0]) : null
                 };
 
-                // Get existing blogs from localStorage
                 const blogs = JSON.parse(localStorage.getItem('userBlogs')) || [];
-
-                // Add new blog
                 blogs.push(blog);
-
-                // Save to localStorage
                 localStorage.setItem('userBlogs', JSON.stringify(blogs));
 
-                // Show success message
                 successMessage.style.display = 'block';
                 form.reset();
                 previewTitle.textContent = '';
@@ -274,7 +269,6 @@
                 previewContent.textContent = '';
                 previewImage.style.display = 'none';
 
-                // Redirect to profile after 2 seconds
                 setTimeout(() => {
                     successMessage.style.display = 'none';
                     window.location.href = 'profile.html';
